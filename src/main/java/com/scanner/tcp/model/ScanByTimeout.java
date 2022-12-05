@@ -21,15 +21,19 @@ public class ScanByTimeout {
     /**
      * Основной метод сканирования
      */
-    public void scanning() throws IOException, InterruptedException {
+    public void scanning() {
         //todo https://www.youtube.com/watch?v=fzqTdd0RPVU&list=FLrJrMAPrWPXqwNzjZBZMLGA
         for (ScanHost host : hosts) {
             for (Integer port : host.getScanPorts()) {
-                Socket socket = new Socket();
-                socket.connect(new InetSocketAddress(host.getIpAddr(), port),500);
-                if (socket.isConnected() && ! socket.isClosed()) {
-                    host.getPortMap().put(port, true);
-                } else {
+                try {
+                    Socket socket = new Socket();
+                    socket.connect(new InetSocketAddress(host.getIpAddr(), port), 500);
+                    if (socket.isConnected() && !socket.isClosed()) {
+                        host.getPortMap().put(port, true);
+                    } else {
+                        host.getPortMap().put(port, false);
+                    }
+                } catch (Exception e){
                     host.getPortMap().put(port, false);
                 }
             }
@@ -42,10 +46,6 @@ public class ScanByTimeout {
 
     public void setScanHost(Set<ScanHost> hosts) {
         this.hosts = hosts;
-        try {
-            scanning();
-        } catch (IOException | InterruptedException e) {
-            //throw new RuntimeException(e);
-        }
+        scanning();
     }
 }
