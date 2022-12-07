@@ -19,11 +19,14 @@ public class Main {
 
         ScanByTimeout scanner = getScanner(hostsForScanning);
 
-        OutputView printToConsole = new OutputView();
+        OutputView toConsole = new OutputView();
+        ScanController scanToConsole = new ScanController(scanner, toConsole);
 
-        ScanController controller = new ScanController(scanner, printToConsole);
+        OutputView toJSON = new OutputView("src/main/resources/ScanResult.json");
+        ScanController scanToJSON = new ScanController(scanner, toJSON);
 
-        controller.updateView();
+        scanToConsole.updateView();
+        scanToJSON.updateView();
 
     }
 

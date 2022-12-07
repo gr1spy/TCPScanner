@@ -17,10 +17,7 @@ Example:
 
 ```bash
 Type to request for scanning:
-scan -h 95.165.154.50,8.8.8.8-10 -p 80,443-444,5000-5003
-Opened:
- 95.165.154.50:5000
- 95.165.154.50:5001
- 95.165.154.50:443
- 8.8.8.8:443
+scan -h 8.8.8.8-10 -p 443-444
+Result:
+[{"ip":"8.8.8.9","openedPorts":[],"closedPorts":["443","444"]},{"ip":"8.8.8.8","openedPorts":["443"],"closedPorts":["444"]},{"ip":"8.8.8.10","openedPorts":[],"closedPorts":["443","444"]}]
 ```

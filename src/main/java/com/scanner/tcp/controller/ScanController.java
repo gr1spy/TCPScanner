@@ -20,7 +20,6 @@ public class ScanController {
      * Requesting scan for hosts and displaying our result in output.
      */
     public void updateView() {
-        model.scan(model.getHostMap());
-        view.displayResult(model.getHostMap());
+        view.print(model.scan(model.getHostMap()));
     }
 }

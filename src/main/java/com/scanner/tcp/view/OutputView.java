@@ -1,5 +1,12 @@
 package com.scanner.tcp.view;
 
+import com.google.gson.Gson;
+import com.scanner.tcp.model.hostInJSON;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -7,12 +14,86 @@ import java.util.Map;
  */
 public class OutputView {
 
-    public void displayResult(Map<String, Boolean> host) {
-        System.out.println("Opened:");
-        for (Map.Entry<String, Boolean> resultScan : host.entrySet()) {
-            if (resultScan.getValue()) {
-                System.out.println(" " + resultScan.getKey());
+    private String PATH_FOR_RESULT = "";
+
+    public OutputView() {
+    }
+
+    public OutputView(String PATH_FOR_RESULT) {
+        this.PATH_FOR_RESULT = PATH_FOR_RESULT;
+    }
+
+    /**
+     * Method has realizing algorithm for output way.
+     * @param hosts Map with all scanned hosts
+     */
+    public void print(Map<String, Boolean> hosts) {
+
+        List<hostInJSON> hostsForPrint = new ArrayList<>();
+
+        for (Map.Entry<String, Boolean> stringFromScanResult : hosts.entrySet()) {
+
+            hostInJSON checkInclude = new hostInJSON();
+            checkInclude.setIp(stringFromScanResult.getKey().split(":")[0]);
+
+            if (hostsForPrint.contains(checkInclude)) {
+                addPortResult(stringFromScanResult, hostsForPrint);
+            } else {
+                hostsForPrint.add(getNewJSONHost(stringFromScanResult));
             }
+        }
+
+        if (PATH_FOR_RESULT.getBytes().length > 0) {
+            toJSON(hostsForPrint);
+        } else {
+            toConsole(hostsForPrint);
+        }
+    }
+
+    /**
+     * If host with same IP was find, then we use this method.
+     * @param ipPlusPortPlusBool string like ("ip:port",boolean)
+     * @param hosts hostsForPrint list from print() method
+     */
+    private void addPortResult(Map.Entry<String, Boolean> ipPlusPortPlusBool, List<hostInJSON> hosts) {
+        for (hostInJSON h : hosts) {
+            if (h.getIp().equals(ipPlusPortPlusBool.getKey().split(":")[0])) {
+                if (ipPlusPortPlusBool.getValue()) {
+                    h.getOpenedPorts().add(ipPlusPortPlusBool.getKey().split(":")[1]);
+                } else {
+                    h.getClosedPorts().add(ipPlusPortPlusBool.getKey().split(":")[1]);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * If host with same IP wasn't find, then we use this method.
+     * @param stringInHostsMap string like ("ip:port",boolean)
+     */
+    private hostInJSON getNewJSONHost(Map.Entry<String, Boolean> stringInHostsMap) {
+        hostInJSON h = new hostInJSON();
+        h.setIp(stringInHostsMap.getKey().split(":")[0]);
+        if (stringInHostsMap.getValue()) {
+            h.getOpenedPorts().add(stringInHostsMap.getKey().split(":")[1]);
+        } else {
+            h.getClosedPorts().add(stringInHostsMap.getKey().split(":")[1]);
+        }
+
+        return h;
+    }
+
+    private void toConsole(List<hostInJSON> hosts) {
+        System.out.println("Result:");
+        System.out.println(new Gson().toJson(hosts));
+    }
+
+    private void toJSON(List<hostInJSON> hosts) {
+        try (FileWriter writer = new FileWriter(PATH_FOR_RESULT, false)) {
+            writer.write(new Gson().toJson(hosts));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

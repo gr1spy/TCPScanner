@@ -10,11 +10,9 @@ public class InputParser {
     public InputParser() {
     }
 
-
     /**
-     *
      * @param in users cmd input
-     * @return  map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
+     * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
      */
     public Map<String, Boolean> parse(String in) {
         //todo у нас никак не учитываются треды, обработать это. надо куда то их добавить
@@ -52,7 +50,7 @@ public class InputParser {
 
         for (String ipNum : uniqIp) {
             for (Integer portNum : uniqPort) {
-                hostsForScan.put(ipNum+":"+portNum, false);
+                hostsForScan.put(ipNum + ":" + portNum, false);
             }
         }
 
@@ -101,7 +99,6 @@ public class InputParser {
 
         return result;
     }
-
 
     /**
      * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
