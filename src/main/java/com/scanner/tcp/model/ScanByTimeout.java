@@ -1,51 +1,61 @@
 package com.scanner.tcp.model;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.Set;
+import java.util.Map;
 
 /**
- * Класс, который реализует сканнер: Half-open SYN flag
+ * Class which realized SYN TCP scanner.
  **/
 public class ScanByTimeout {
-    Set<ScanHost> hosts;
+    Map<String, Boolean> host;
 
-    public ScanByTimeout(Set<ScanHost> hosts) {
-        this.hosts = hosts;
+    public ScanByTimeout(Map<String, Boolean> host) {
+        this.host = host;
     }
 
-    public ScanByTimeout() {
-    }
 
     /**
-     * Основной метод сканирования
+     * Method has getting Map with hosts ips and ports and scan all of their.
+     * @param hostIn map with ips and ports hosts
+     * @return result of scan
      */
-    public void scanning() {
-        //todo https://www.youtube.com/watch?v=fzqTdd0RPVU&list=FLrJrMAPrWPXqwNzjZBZMLGA
-        for (ScanHost host : hosts) {
-            for (Integer port : host.getScanPorts()) {
-                try {
-                    Socket socket = new Socket();
-                    socket.connect(new InetSocketAddress(host.getIpAddr(), port), 500);
-                    if (socket.isConnected() && !socket.isClosed()) {
-                        host.getPortMap().put(port, true);
-                    } else {
-                        host.getPortMap().put(port, false);
-                    }
-                } catch (Exception e){
-                    host.getPortMap().put(port, false);
-                }
+    public Map<String, Boolean> scan(Map<String, Boolean> hostIn) {
+
+        for (Map.Entry<String, Boolean> entry : hostIn.entrySet()) {
+            host.put(entry.getKey(), ping(entry.getKey().split(":")[0], entry.getKey().split(":")[1]));
+        }
+        return host;
+    }
+
+    public void setHost(Map<String, Boolean> host) {
+        this.host = host;
+    }
+
+    public Map<String, Boolean> getHostMap() {
+        return this.host;
+    }
+
+
+    /**
+     * Method check host port for opened or closed.
+     * @return <strong>true - </strong>if port is opened, and <strong>false - </strong>if closed
+     */
+    private Boolean ping(String ip, String port) {
+        boolean isOpened = false;
+        try {
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(ip, Integer.parseInt(port)), 500);
+            if (socket.isConnected() && !socket.isClosed()) {
+                isOpened = true;
+            } else {
+                isOpened = false;
             }
+        } catch (Exception e) {
+            isOpened = false;
+        } finally {
+            return isOpened;
         }
     }
 
-    public Set<ScanHost> getScanHost() {
-        return hosts;
-    }
-
-    public void setScanHost(Set<ScanHost> hosts) {
-        this.hosts = hosts;
-        scanning();
-    }
 }

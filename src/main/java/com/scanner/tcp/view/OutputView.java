@@ -1,17 +1,18 @@
 package com.scanner.tcp.view;
 
-import com.scanner.tcp.model.ScanHost;
-
-import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 /**
- * Класс, который реализует методы представления готового результата
+ * Class has realizing output result
  */
 public class OutputView {
-    public void displayResult(Set<ScanHost> hosts) {
-        for (ScanHost host : hosts) {
-            System.out.println(host);
+
+    public void displayResult(Map<String, Boolean> host) {
+        System.out.println("Opened:");
+        for (Map.Entry<String, Boolean> resultScan : host.entrySet()) {
+            if (resultScan.getValue()) {
+                System.out.println(" " + resultScan.getKey());
+            }
         }
     }
 }

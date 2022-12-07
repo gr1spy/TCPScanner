@@ -1,31 +1,32 @@
 package com.scanner.tcp.model;
 
-import java.math.MathContext;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
- * Класс, реализующий парсинг пользовательского ввода
+ * Class has realizing parsing users input
  */
 public class InputParser {
-
-    private String input;
-    private final Set<ScanHost> hosts = new HashSet<>();
 
     public InputParser() {
     }
 
 
-    public void parsing() {
+    /**
+     *
+     * @param in users cmd input
+     * @return  map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
+     */
+    public Map<String, Boolean> parse(String in) {
+        //todo у нас никак не учитываются треды, обработать это. надо куда то их добавить
+        Map<String, Boolean> hostsForScan = new HashMap<>();
 
         List<String> parsedSubstrings = new ArrayList<>();
-        Set<String> ip = new HashSet<>();
-        Set<Integer> port = new HashSet<>();
+        Set<String> uniqIp = new HashSet<>();
+        Set<Integer> uniqPort = new HashSet<>();
         int thread = 1;
 
         int checkThatItIsNotBegin = 0;
-        for (String s : this.input.split("\s-[hpt]\s")) {
+        for (String s : in.split("\s-[hpt]\s")) {
             if (checkThatItIsNotBegin > 0) {
                 parsedSubstrings.add(s);
             }
@@ -36,12 +37,12 @@ public class InputParser {
         for (String substring : parsedSubstrings) {
             if (iteratorBySubstrings == 0) {
                 Set<String> ips = substringSplit(substring);
-                ip.addAll(ips);
+                uniqIp.addAll(ips);
                 iteratorBySubstrings++;
             } else if (iteratorBySubstrings == 1) {
                 Set<String> ports = substringSplit(substring);
                 for (String numPort : ports) {
-                    port.add(Integer.parseInt(numPort));
+                    uniqPort.add(Integer.parseInt(numPort));
                 }
                 iteratorBySubstrings++;
             } else if (iteratorBySubstrings == 2) {
@@ -49,17 +50,17 @@ public class InputParser {
             }
         }
 
-        for (String ipNum : ip) {
-            hosts.add(new ScanHost(ipNum, port));
+        for (String ipNum : uniqIp) {
+            for (Integer portNum : uniqPort) {
+                hostsForScan.put(ipNum+":"+portNum, false);
+            }
         }
 
+        return hostsForScan;
     }
 
     /**
-     * Получаем множество распарсенных строк ip or ports
-     *
-     * @param stringForSplit входная строка
-     * @return множество ip or ports
+     * @return Set of ips or ports
      */
     public Set<String> substringSplit(String stringForSplit) {
         Set<String> bufResult = new HashSet<>();
@@ -93,6 +94,7 @@ public class InputParser {
         }
 
         result.addAll(bufResult);
+
         for (String count : incorrectCount) {
             result.remove(count);
         }
@@ -100,24 +102,17 @@ public class InputParser {
         return result;
     }
 
-    public void requestInput() {
+
+    /**
+     * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
+     */
+    public Map<String, Boolean> requestInput() {
         Scanner in = new Scanner(System.in);
+        System.out.println("Example: scan -h 95.165.154.50,8.8.8.8-10 -p 80,443-444,5000-5003");
         System.out.println("Type to request for scanning:");
-//        this.input = in.nextLine();
-        this.input = "scan -h 95.165.154.50,8.8.8.8-10 -p 80,443-444,5000-5003";
-        parsing();
+        String input = in.nextLine();
+
+        return new HashMap<>(parse(input));
     }
 
-    public String getInput() {
-        return input;
-    }
-
-    public void setInput(String input) {
-        this.input = input;
-    }
-
-
-    public Set<ScanHost> getHosts() {
-        return hosts;
-    }
 }
