@@ -14,6 +14,7 @@ public class ScanByTimeout {
         this.hosts = hosts;
     }
 
+
     /**
      * Method has getting Map with hosts ips and ports and scan all of their.
      *
@@ -28,10 +29,6 @@ public class ScanByTimeout {
         return hosts;
     }
 
-    public Map<String, Boolean> getHostMap() {
-        return this.hosts;
-    }
-
     /**
      * Method check host port for opened or closed.
      *
@@ -42,16 +39,14 @@ public class ScanByTimeout {
         try {
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(ip, Integer.parseInt(port)), 500);
-            if (socket.isConnected() && !socket.isClosed()) {
-                isOpened = true;
-            } else {
-                isOpened = false;
-            }
-        } catch (Exception e) {
-            isOpened = false;
-        } finally {
-            return isOpened;
+            isOpened = socket.isConnected() && !socket.isClosed();
+        } catch (Exception ignored) {
         }
+        return isOpened;
+    }
+
+    public Map<String, Boolean> getHostMap() {
+        return this.hosts;
     }
 
 }

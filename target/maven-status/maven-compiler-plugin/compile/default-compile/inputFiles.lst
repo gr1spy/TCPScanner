@@ -1,8 +1,6 @@
-C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\model\ScanHost.java
-C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\model\UserInputKey.java
-C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\model\UserInputParser.java
+C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\model\InputParser.java
+C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\model\hostInJSON.java
 C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\view\OutputView.java
-C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\model\ScanMethod.java
 C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\model\ScanByTimeout.java
 C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\controller\ScanController.java
 C:\Java_prog\TCPScanner\src\main\java\com\scanner\tcp\Main.java

@@ -99,17 +99,4 @@ public class InputParser {
 
         return result;
     }
-
-    /**
-     * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
-     */
-    public Map<String, Boolean> requestInput() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Example: scan -h 95.165.154.50,8.8.8.8-10 -p 80,443-444,5000-5003");
-        System.out.println("Type to request for scanning:");
-        String input = in.nextLine();
-
-        return new HashMap<>(parse(input));
-    }
-
 }

@@ -8,8 +8,8 @@ import com.scanner.tcp.view.OutputView;
  */
 public class ScanController {
 
-    private ScanByTimeout model;
-    private OutputView view;
+    private final ScanByTimeout model;
+    private final OutputView view;
 
     public ScanController(ScanByTimeout model, OutputView view) {
         this.model = model;

@@ -25,6 +25,7 @@ public class OutputView {
 
     /**
      * Method has realizing algorithm for output way.
+     *
      * @param hosts Map with all scanned hosts
      */
     public void print(Map<String, Boolean> hosts) {
@@ -32,28 +33,36 @@ public class OutputView {
         List<hostInJSON> hostsForPrint = new ArrayList<>();
 
         for (Map.Entry<String, Boolean> stringFromScanResult : hosts.entrySet()) {
-
-            hostInJSON checkInclude = new hostInJSON();
-            checkInclude.setIp(stringFromScanResult.getKey().split(":")[0]);
-
-            if (hostsForPrint.contains(checkInclude)) {
-                addPortResult(stringFromScanResult, hostsForPrint);
-            } else {
-                hostsForPrint.add(getNewJSONHost(stringFromScanResult));
-            }
+            selectWayForHost(stringFromScanResult, hostsForPrint);
         }
 
-        if (PATH_FOR_RESULT.getBytes().length > 0) {
-            toJSON(hostsForPrint);
-        } else {
+        if (PATH_FOR_RESULT.isEmpty()) {
             toConsole(hostsForPrint);
+        } else {
+            toJSON(hostsForPrint);
         }
     }
 
     /**
-     * If host with same IP was find, then we use this method.
+     * If <strong>stringFromScanResult</strong> ("ip:port",bool) is in <strong>hostsForPrint</strong>, then added new port in hosts list. And if isn't, then created new host and add to <strong>hostsForPrint</strong>.
+     */
+    private void selectWayForHost(Map.Entry<String, Boolean> stringFromScanResult, List<hostInJSON> hostsForPrint) {
+
+        hostInJSON checkInclude = new hostInJSON();
+        checkInclude.setIp(stringFromScanResult.getKey().split(":")[0]);
+
+        if (hostsForPrint.contains(checkInclude)) {
+            addPortResult(stringFromScanResult, hostsForPrint);
+        } else {
+            hostsForPrint.add(getNewJSONHost(stringFromScanResult));
+        }
+    }
+
+    /**
+     * If host with same IP was find, then we found this Host in our List and add new ports to him.
+     *
      * @param ipPlusPortPlusBool string like ("ip:port",boolean)
-     * @param hosts hostsForPrint list from print() method
+     * @param hosts              hostsForPrint list from print() method
      */
     private void addPortResult(Map.Entry<String, Boolean> ipPlusPortPlusBool, List<hostInJSON> hosts) {
         for (hostInJSON h : hosts) {
@@ -67,9 +76,9 @@ public class OutputView {
         }
     }
 
-
     /**
-     * If host with same IP wasn't find, then we use this method.
+     * If host with same IP wasn't find, then we create new host and add him to our host list.
+     *
      * @param stringInHostsMap string like ("ip:port",boolean)
      */
     private hostInJSON getNewJSONHost(Map.Entry<String, Boolean> stringInHostsMap) {

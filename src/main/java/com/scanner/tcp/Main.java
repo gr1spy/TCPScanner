@@ -5,19 +5,23 @@ import com.scanner.tcp.model.InputParser;
 import com.scanner.tcp.model.ScanByTimeout;
 import com.scanner.tcp.view.OutputView;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 //todo сделать многопоточку
+
 /**
  * Class which realized main functionality of "scanner by timeout".
  * Based on MVC and Socket class.
+ *
  * @author george - observable, Max - observer
  */
 public class Main {
 
     public static void main(String[] args) {
 
-        InputParser hostsForScanning = new InputParser();
-
-        ScanByTimeout scanner = getScanner(hostsForScanning);
+        ScanByTimeout scanner = getScanner();
 
         OutputView toConsole = new OutputView();
         ScanController scanToConsole = new ScanController(scanner, toConsole);
@@ -31,14 +35,26 @@ public class Main {
     }
 
     /**
-     *
-     * @param in object for request user input
      * @return scanner object
      */
-    private static ScanByTimeout getScanner(InputParser in) {
+    private static ScanByTimeout getScanner() {
 
-        ScanByTimeout scanByTimeout = new ScanByTimeout(in.requestInput());
+        ScanByTimeout scanByTimeout = new ScanByTimeout(requestInput());
 
         return scanByTimeout;
     }
+
+    /**
+     * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
+     */
+    private static Map<String, Boolean> requestInput() {
+        InputParser hostsForScanning = new InputParser();
+        Scanner in = new Scanner(System.in);
+        System.out.println("Example: scan -h 8.8.8.8-10 -p 443-444");
+        System.out.println("Type to request for scanning:");
+        String input = in.nextLine();
+
+        return new HashMap<>(hostsForScanning.parse(input));
+    }
 }
+
