@@ -1,6 +1,8 @@
 package com.scanner.tcp.model;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Class has realizing parsing users input
@@ -14,8 +16,8 @@ public class InputParser {
      * @param in users cmd input
      * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
      */
-    public Map<String, Boolean> parse(String in) {
-        Map<String, Boolean> hostsForScan = new HashMap<>();
+    public ConcurrentMap<String, Boolean> parse(String in) {
+        ConcurrentMap<String, Boolean> hostsForScan = new ConcurrentHashMap<>();
 
         List<String> parsedSubstrings = new ArrayList<>();
         Set<String> uniqIp = new HashSet<>();

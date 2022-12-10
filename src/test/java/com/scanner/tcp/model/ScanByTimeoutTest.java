@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -13,7 +14,7 @@ public class ScanByTimeoutTest {
     @Test
     public void scan() {
 
-        ScanByTimeout scanner = new ScanByTimeout(new HashMap<>());
+        ScanByTimeout scanner = new ScanByTimeout(new ConcurrentHashMap<>());
 
         Map<String, Boolean> correctMap = new HashMap<>();
         Map<String, Boolean> checkMap = new HashMap<>();
