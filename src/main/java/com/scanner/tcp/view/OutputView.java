@@ -34,6 +34,4 @@ public class OutputView {
             printer.toJSON(PATH_FOR_RESULT, converter.convertTo());
         }
     }
-
-
 }

@@ -2,20 +2,19 @@ package com.scanner.tcp.model;
 
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
+//todo добавить логгер
 /**
  * Class which realized SYN TCP scanner.
  **/
 public class ScanByTimeout {
     ConcurrentMap<String, Boolean> hosts;
-
-    int countOfThreads = 1;
 
     public ScanByTimeout(ConcurrentMap<String, Boolean> hosts) {
         this.hosts = hosts;
@@ -30,9 +29,7 @@ public class ScanByTimeout {
      */
     public Map<String, Boolean> scan(Map<String, Boolean> hostIn) {
 
-        setCountOfThreads(hostIn);
-
-        ExecutorService executorService = Executors.newFixedThreadPool(countOfThreads);
+        ExecutorService executorService = Executors.newFixedThreadPool(getCountOfThreads(hostIn));
 
         List<Ping> scannedHosts = new ArrayList<>();
         for (Map.Entry<String, Boolean> entry : hostIn.entrySet()) {
@@ -44,7 +41,7 @@ public class ScanByTimeout {
         }
 
         try {
-            List<Future<Boolean>> futures = executorService.invokeAll(scannedHosts);
+            executorService.invokeAll(scannedHosts);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,23 +61,8 @@ public class ScanByTimeout {
      *
      * @param hosts
      */
-    public void setCountOfThreads(Map<String, Boolean> hosts) {
-        int inputCountOfThreads = 0;
-        int maxCountOfThreads = 0;
-
-        for (Map.Entry<String, Boolean> entry : hosts.entrySet()) {
-            inputCountOfThreads = Integer.parseInt(entry.getKey().split("[:,]")[2]);
-            break;
-        }
-        for (Map.Entry<String, Boolean> entry : hosts.entrySet()) {
-            maxCountOfThreads++;
-        }
-
-        if (inputCountOfThreads > maxCountOfThreads) {
-            this.countOfThreads = inputCountOfThreads -
-                    (inputCountOfThreads - maxCountOfThreads);
-        } else {
-            this.countOfThreads = inputCountOfThreads;
-        }
+    private int getCountOfThreads(Map<String, Boolean> hosts) {
+        return Math.min(Integer.parseInt(hosts.entrySet().iterator().next().getKey().split("[:,]")[2]),
+                hosts.size());
     }
 }

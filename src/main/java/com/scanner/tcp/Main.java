@@ -21,17 +21,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ScanByTimeout scanner = getScanner();
+        while(true) {
+            ScanByTimeout scanner = getScanner();
 
-        OutputView toConsole = new OutputView();
-        Controller scanToConsole = new Controller(scanner, toConsole);
+            OutputView toConsole = new OutputView();
+            Controller scanToConsole = new Controller(scanner, toConsole);
 
-//        OutputView toJSON = new OutputView("src/main/resources/ScanResult.json");
-//        Controller scanToJSON = new Controller(scanner, toJSON);
-
-        scanToConsole.updateView();
-//        scanToJSON.updateView();
-
+            scanToConsole.updateView();
+            System.out.println("----------------");
+        }
     }
 
     /**
