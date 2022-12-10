@@ -21,10 +21,10 @@ public class InputParserTest {
         InputParser inputParser = new InputParser();
         Map<String, Boolean> mapForChecked = new HashMap<>();
 
-        mapForChecked.put("8.8.8.8:80", false);
-        mapForChecked.put("8.8.8.8:443", false);
-        mapForChecked.put("87.250.250.242:80", false);
-        mapForChecked.put("87.250.250.242:443", false);
+        mapForChecked.put("8.8.8.8:80,10", false);
+        mapForChecked.put("8.8.8.8:443,10", false);
+        mapForChecked.put("87.250.250.242:80,10", false);
+        mapForChecked.put("87.250.250.242:443,10", false);
 
         Map<String, Boolean> result = new HashMap<>(inputParser.parse(test1));
         for (Map.Entry<String, Boolean> str : mapForChecked.entrySet()) {
@@ -43,12 +43,12 @@ public class InputParserTest {
         Map<String, Boolean> mapForChecked = new HashMap<>();
         Map<String, Boolean> result = new HashMap<>(inputParser.parse(test2));
 
-        mapForChecked.put("8.8.8.8:80", false);
-        mapForChecked.put("8.8.8.8:443", false);
-        mapForChecked.put("8.8.8.9:80", false);
-        mapForChecked.put("8.8.8.9:443", false);
-        mapForChecked.put("8.8.8.10:80", false);
-        mapForChecked.put("8.8.8.10:443", false);
+        mapForChecked.put("8.8.8.8:80,", false);
+        mapForChecked.put("8.8.8.8:443,", false);
+        mapForChecked.put("8.8.8.9:80,", false);
+        mapForChecked.put("8.8.8.9:443,", false);
+        mapForChecked.put("8.8.8.10:80,", false);
+        mapForChecked.put("8.8.8.10:443,", false);
 
         result.putAll(inputParser.parse(test2));
 
@@ -64,18 +64,18 @@ public class InputParserTest {
         Map<String, Boolean> mapForChecked = new HashMap<>();
         Map<String, Boolean> result = new HashMap<>(inputParser.parse(test3));
 
-        mapForChecked.put("8.8.8.8:80", false);
-        mapForChecked.put("8.8.8.8:81", false);
-        mapForChecked.put("8.8.8.8:443", false);
-        mapForChecked.put("8.8.8.9:80", false);
-        mapForChecked.put("8.8.8.9:81", false);
-        mapForChecked.put("8.8.8.9:443", false);
-        mapForChecked.put("8.8.8.10:80", false);
-        mapForChecked.put("8.8.8.10:81", false);
-        mapForChecked.put("8.8.8.10:443", false);
-        mapForChecked.put("8.8.8.11:80", false);
-        mapForChecked.put("8.8.8.11:81", false);
-        mapForChecked.put("8.8.8.11:443", false);
+        mapForChecked.put("8.8.8.8:80,", false);
+        mapForChecked.put("8.8.8.8:81,", false);
+        mapForChecked.put("8.8.8.8:443,", false);
+        mapForChecked.put("8.8.8.9:80,", false);
+        mapForChecked.put("8.8.8.9:81,", false);
+        mapForChecked.put("8.8.8.9:443,", false);
+        mapForChecked.put("8.8.8.10:80,", false);
+        mapForChecked.put("8.8.8.10:81,", false);
+        mapForChecked.put("8.8.8.10:443,", false);
+        mapForChecked.put("8.8.8.11:80,", false);
+        mapForChecked.put("8.8.8.11:81,", false);
+        mapForChecked.put("8.8.8.11:443,", false);
 
         result.putAll(inputParser.parse(test3));
         assertThat(mapForChecked, is(result));

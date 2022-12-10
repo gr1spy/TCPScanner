@@ -10,6 +10,8 @@ import java.util.Map;
 public class ScanByTimeout {
     Map<String, Boolean> hosts;
 
+    String countOfThreads = "";
+
     public ScanByTimeout(Map<String, Boolean> hosts) {
         this.hosts = hosts;
     }
@@ -23,8 +25,10 @@ public class ScanByTimeout {
      */
     public Map<String, Boolean> scan(Map<String, Boolean> hostIn) {
 
+        setCountOfThreads(hostIn);
+
         for (Map.Entry<String, Boolean> entry : hostIn.entrySet()) {
-            hosts.put(entry.getKey(), ping(entry.getKey().split(":")[0], entry.getKey().split(":")[1]));
+            hosts.put(entry.getKey(), ping(entry.getKey().split("[:,]")[0], entry.getKey().split("[:,]")[1]));
         }
         return hosts;
     }
@@ -49,4 +53,13 @@ public class ScanByTimeout {
         return this.hosts;
     }
 
+    public String getCountOfThreads() {
+        return countOfThreads;
+    }
+
+    public void setCountOfThreads(Map<String, Boolean> hosts) {
+        for (Map.Entry<String, Boolean> entry : hosts.entrySet()) {
+            this.countOfThreads =  entry.getKey().split("[,:]")[2];
+        }
+    }
 }

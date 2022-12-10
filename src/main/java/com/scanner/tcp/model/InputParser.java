@@ -15,13 +15,12 @@ public class InputParser {
      * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
      */
     public Map<String, Boolean> parse(String in) {
-        //todo у нас никак не учитываются треды, обработать это. надо куда то их добавить
         Map<String, Boolean> hostsForScan = new HashMap<>();
 
         List<String> parsedSubstrings = new ArrayList<>();
         Set<String> uniqIp = new HashSet<>();
         Set<Integer> uniqPort = new HashSet<>();
-        int thread = 1;
+        String countOfThreads = "";
 
         int checkThatItIsNotBegin = 0;
         for (String s : in.split("\s-[hpt]\s")) {
@@ -44,13 +43,13 @@ public class InputParser {
                 }
                 iteratorBySubstrings++;
             } else if (iteratorBySubstrings == 2) {
-                thread = Integer.parseInt(substring);
+                countOfThreads = substring;
             }
         }
 
         for (String ipNum : uniqIp) {
             for (Integer portNum : uniqPort) {
-                hostsForScan.put(ipNum + ":" + portNum, false);
+                hostsForScan.put(ipNum + ":" + portNum + "," + countOfThreads, false);
             }
         }
 
