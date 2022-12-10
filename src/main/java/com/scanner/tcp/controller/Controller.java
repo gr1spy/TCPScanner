@@ -6,12 +6,12 @@ import com.scanner.tcp.view.OutputView;
 /**
  * Class which realized functional of controller in MVC.
  */
-public class ScanController {
+public class Controller {
 
     private final ScanByTimeout model;
     private final OutputView view;
 
-    public ScanController(ScanByTimeout model, OutputView view) {
+    public Controller(ScanByTimeout model, OutputView view) {
         this.model = model;
         this.view = view;
     }
@@ -20,6 +20,6 @@ public class ScanController {
      * Requesting scan for hosts and displaying our result in output.
      */
     public void updateView() {
-        view.print(model.scan(model.getHostMap()));
+        view.onDraw(model.scan(model.getHostMap()));
     }
 }

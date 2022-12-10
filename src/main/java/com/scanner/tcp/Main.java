@@ -1,6 +1,6 @@
 package com.scanner.tcp;
 
-import com.scanner.tcp.controller.ScanController;
+import com.scanner.tcp.controller.Controller;
 import com.scanner.tcp.model.InputParser;
 import com.scanner.tcp.model.ScanByTimeout;
 import com.scanner.tcp.view.OutputView;
@@ -24,10 +24,10 @@ public class Main {
         ScanByTimeout scanner = getScanner();
 
         OutputView toConsole = new OutputView();
-        ScanController scanToConsole = new ScanController(scanner, toConsole);
+        Controller scanToConsole = new Controller(scanner, toConsole);
 
         OutputView toJSON = new OutputView("src/main/resources/ScanResult.json");
-        ScanController scanToJSON = new ScanController(scanner, toJSON);
+        Controller scanToJSON = new Controller(scanner, toJSON);
 
         scanToConsole.updateView();
         scanToJSON.updateView();
