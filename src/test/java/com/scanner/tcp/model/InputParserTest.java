@@ -1,5 +1,6 @@
 package com.scanner.tcp.model;
 
+import com.scanner.tcp.model.input.InputParser;
 import org.junit.Assert;
 import org.junit.Test;
 

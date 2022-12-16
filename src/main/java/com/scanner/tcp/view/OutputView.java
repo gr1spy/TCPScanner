@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Class has realizing output result
  */
-public class OutputView {
+public class OutputView implements OutputViewImpl {
 
     private String PATH_FOR_RESULT = "";
 
@@ -18,11 +18,7 @@ public class OutputView {
         this.PATH_FOR_RESULT = PATH_FOR_RESULT;
     }
 
-    /**
-     * Method has realizing algorithm for output way.
-     *
-     * @param hosts Map with all scanned hosts
-     */
+    @Override
     public void onDraw(Map<String, Boolean> hosts) {
 
         JsonConverter converter = new JsonConverter(hosts);

@@ -6,7 +6,7 @@ import com.scanner.tcp.view.OutputView;
 /**
  * Class which realized functional of controller in MVC.
  */
-public class Controller {
+public class Controller implements ControllerImpl {
 
     private final ScanByTimeout model;
     private final OutputView view;
@@ -16,9 +16,7 @@ public class Controller {
         this.view = view;
     }
 
-    /**
-     * Requesting scan for hosts and displaying our result in output.
-     */
+    @Override
     public void updateView() {
         view.onDraw(model.scan(model.getHostMap()));
     }

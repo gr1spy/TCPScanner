@@ -1,4 +1,4 @@
-package com.scanner.tcp.model;
+package com.scanner.tcp.model.input;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
