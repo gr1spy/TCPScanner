@@ -7,19 +7,23 @@ import java.util.Map;
 /**
  * Class has realizing output result
  */
-public class OutputView implements OutputViewImpl {
+public class PrintChoice {
 
     private String PATH_FOR_RESULT = "";
 
-    public OutputView() {
+    public PrintChoice() {
     }
 
-    public OutputView(String PATH_FOR_RESULT) {
+    public PrintChoice(String PATH_FOR_RESULT) {
         this.PATH_FOR_RESULT = PATH_FOR_RESULT;
     }
 
-    @Override
-    public void onDraw(Map<String, Boolean> hosts) {
+    /**
+     * Method has realizing algorithm for output way.
+     *
+     * @param hosts Map with all scanned hosts
+     */
+    public void printIn(Map<String, Boolean> hosts) {
 
         JsonConverter converter = new JsonConverter(hosts);
         Printer printer = new Printer();

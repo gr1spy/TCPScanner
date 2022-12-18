@@ -14,7 +14,7 @@ public class InputParser {
 
     /**
      * @param in users cmd input
-     * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443", true)
+     * @return map with uniq hosts for scan. example  entry -> ("192.168.1.1:443,10", true)
      */
     public ConcurrentMap<String, Boolean> parse(String in) {
         ConcurrentMap<String, Boolean> hostsForScan = new ConcurrentHashMap<>();
@@ -59,7 +59,8 @@ public class InputParser {
     }
 
     /**
-     * @return Set of ips or ports
+     * @param stringForSplit "8.8.8.8-10"
+     * @return ("8.8.8.8","8.8.8.9","8.8.8.10")
      */
     public Set<String> substringSplit(String stringForSplit) {
         Set<String> bufResult = new HashSet<>();

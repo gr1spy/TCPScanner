@@ -13,8 +13,8 @@ public class Input implements RequestImp, ParseImpl {
 
     @Override
     public void request() {
-        RequestInput requestInput = new RequestInput();
-        setInputStr(requestInput.requestInput().inputStr);
+        InputRequest requestInput = new InputRequest();
+        setInputStr(requestInput.requestInput());
     }
 
     @Override

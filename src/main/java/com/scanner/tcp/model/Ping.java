@@ -5,6 +5,10 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+
+/**
+ * Class for multithreading scan by ICMP protocol.
+ */
 public class Ping implements Callable<Boolean> {
 
     Socket socket;

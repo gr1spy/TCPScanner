@@ -1,10 +1,9 @@
 package com.scanner.tcp;
 
-import com.scanner.tcp.controller.Controller;
-import com.scanner.tcp.model.input.Input;
-import com.scanner.tcp.model.input.RequestInput;
-import com.scanner.tcp.model.ScanByTimeout;
-import com.scanner.tcp.view.OutputView;
+import com.scanner.tcp.controller.MainController;
+import com.scanner.tcp.controller.InputController;
+import com.scanner.tcp.model.Scan;
+import com.scanner.tcp.view.PrintChoice;
 
 /**
  * Class which realized main functionality of "scanner by timeout".
@@ -17,15 +16,14 @@ public class Main {
     public static void main(String[] args) {
 
         while (true) {
-            Input input = new Input();
-            input.request();
-            input.parse();
+            InputController in = new InputController();
+            in.request();
+            in.parse();
 
-            OutputView toConsole = new OutputView();
-            Controller scanToConsole = new Controller(new ScanByTimeout(input.getParsedScanningHosts()), toConsole);
+            MainController scanToConsole = new MainController(new Scan(in.getParsedHosts()), new PrintChoice());
 
-            scanToConsole.updateView();
-            System.out.println("----------------");
+            scanToConsole.beginScanning();
+            System.out.println("\n[ ==== New Scan ==== ]");
         }
     }
 }

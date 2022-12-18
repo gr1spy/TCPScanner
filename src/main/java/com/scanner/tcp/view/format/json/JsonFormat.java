@@ -10,6 +10,10 @@ public class JsonFormat {
         this.hosts = hosts;
     }
 
+
+    /**
+     * @return list of scanned host in JSON format
+     */
     public List<JsonHost> getHostsForPrint() {
         return hosts;
     }

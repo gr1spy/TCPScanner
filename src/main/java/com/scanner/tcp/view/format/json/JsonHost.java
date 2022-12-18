@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class JsonHost implements JsonHostImpl {
+public class JsonHost {
 
     String ip;
     List<String> openedPorts = new ArrayList<>();
@@ -13,22 +13,25 @@ public class JsonHost implements JsonHostImpl {
     public JsonHost() {
     }
 
-    @Override
     public String getIp() {
         return ip;
     }
 
-    @Override
     public void setIp(String ip) {
         this.ip = ip;
     }
 
-    @Override
+
+    /**
+     * @return list with opened ports
+     */
     public List<String> getOpenedPorts() {
         return openedPorts;
     }
 
-    @Override
+    /**
+     * @return list with closed ports
+     */
     public List<String> getClosedPorts() {
         return closedPorts;
     }
