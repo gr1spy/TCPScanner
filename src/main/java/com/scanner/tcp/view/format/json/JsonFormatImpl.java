@@ -1,4 +1,0 @@
-package com.scanner.tcp.view.format.json;
-
-public interface JsonFormatImpl {
-}

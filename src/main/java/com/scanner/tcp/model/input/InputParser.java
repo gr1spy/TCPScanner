@@ -1,5 +1,8 @@
 package com.scanner.tcp.model.input;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -8,6 +11,7 @@ import java.util.concurrent.ConcurrentMap;
  * Class has realizing parsing users input
  */
 public class InputParser {
+    private static final Logger log = LoggerFactory.getLogger(InputParser.class);
 
     public InputParser() {
     }
@@ -55,6 +59,7 @@ public class InputParser {
             }
         }
 
+        log.info("Input parsing complete");
         return hostsForScan;
     }
 
@@ -63,6 +68,7 @@ public class InputParser {
      * @return ("8.8.8.8","8.8.8.9","8.8.8.10")
      */
     public Set<String> substringSplit(String stringForSplit) {
+        log.info("Found substring with range: {}",stringForSplit);
         Set<String> bufResult = new HashSet<>();
         List<String> incorrectCount = new ArrayList<>();
 
@@ -99,6 +105,7 @@ public class InputParser {
             result.remove(count);
         }
 
+        log.info("Substring parsing complete!");
         return result;
     }
 }

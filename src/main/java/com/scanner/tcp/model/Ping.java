@@ -1,5 +1,8 @@
 package com.scanner.tcp.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Map;
@@ -11,6 +14,7 @@ import java.util.concurrent.Callable;
  */
 public class Ping implements Callable<Boolean> {
 
+    private static final Logger log = LoggerFactory.getLogger(Ping.class);
     Socket socket;
     String ip;
     String port;
@@ -25,11 +29,14 @@ public class Ping implements Callable<Boolean> {
 
     @Override
     public Boolean call() {
+
         boolean isOpened = false;
         try {
+            log.info("Trying check connect to {} with {} port..",ip,port);
             socket.connect(new InetSocketAddress(ip, Integer.parseInt(port)), 500);
             isOpened = socket.isConnected() && !socket.isClosed();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            log.warn("Error connect to {} with {} port!",ip,port);
         }
         ipPlusPort.setValue(isOpened);
         return isOpened;

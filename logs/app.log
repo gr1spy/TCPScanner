@@ -1,0 +1,87 @@
+2022-12-18 15:29:34,938 INFO c.s.t.c.InputController [main] Waiting user input..
+2022-12-18 15:29:39,023 INFO c.s.t.c.InputController [main] Make input parsing.
+2022-12-18 15:29:39,025 INFO c.s.t.m.i.InputParser [main] Found substring with range: 8.8.8.8-10,95.165.154.50
+2022-12-18 15:29:39,025 INFO c.s.t.m.i.InputParser [main] Substring parsing complete!
+2022-12-18 15:29:39,025 INFO c.s.t.m.i.InputParser [main] Found substring with range: 443-444,5000-5001
+2022-12-18 15:29:39,025 INFO c.s.t.m.i.InputParser [main] Substring parsing complete!
+2022-12-18 15:29:39,026 INFO c.s.t.m.i.InputParser [main] Input parsing complete
+2022-12-18 15:29:39,031 INFO c.s.t.c.MainController [main] Scanning is beginning..
+2022-12-18 15:29:39,032 INFO c.s.t.m.Scan [main] Thread Pool count from string was parsed, scanning is continue..
+2022-12-18 15:29:39,032 INFO c.s.t.m.Scan [main] Waiting for ending job all of threads.
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-1] Trying check connect to 8.8.8.8 with 443 port..
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-3] Trying check connect to 8.8.8.10 with 444 port..
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-2] Trying check connect to 8.8.8.10 with 443 port..
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-4] Trying check connect to 8.8.8.9 with 443 port..
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-5] Trying check connect to 8.8.8.8 with 444 port..
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-6] Trying check connect to 8.8.8.9 with 444 port..
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-7] Trying check connect to 95.165.154.50 with 5001 port..
+2022-12-18 15:29:39,034 INFO c.s.t.m.Ping [pool-2-thread-9] Trying check connect to 8.8.8.8 with 5001 port..
+2022-12-18 15:29:39,034 INFO c.s.t.m.Ping [pool-2-thread-10] Trying check connect to 8.8.8.10 with 5000 port..
+2022-12-18 15:29:39,033 INFO c.s.t.m.Ping [pool-2-thread-8] Trying check connect to 95.165.154.50 with 5000 port..
+2022-12-18 15:29:39,102 INFO c.s.t.m.Ping [pool-2-thread-1] Trying check connect to 8.8.8.10 with 5001 port..
+2022-12-18 15:29:39,154 INFO c.s.t.m.Ping [pool-2-thread-7] Trying check connect to 8.8.8.9 with 5000 port..
+2022-12-18 15:29:39,157 INFO c.s.t.m.Ping [pool-2-thread-8] Trying check connect to 8.8.8.9 with 5001 port..
+2022-12-18 15:29:39,535 WARN c.s.t.m.Ping [pool-2-thread-2] Error connect to 8.8.8.10 with 443 port!
+2022-12-18 15:29:39,535 WARN c.s.t.m.Ping [pool-2-thread-4] Error connect to 8.8.8.9 with 443 port!
+2022-12-18 15:29:39,535 WARN c.s.t.m.Ping [pool-2-thread-10] Error connect to 8.8.8.10 with 5000 port!
+2022-12-18 15:29:39,535 WARN c.s.t.m.Ping [pool-2-thread-5] Error connect to 8.8.8.8 with 444 port!
+2022-12-18 15:29:39,535 INFO c.s.t.m.Ping [pool-2-thread-4] Trying check connect to 95.165.154.50 with 443 port..
+2022-12-18 15:29:39,535 INFO c.s.t.m.Ping [pool-2-thread-10] Trying check connect to 95.165.154.50 with 444 port..
+2022-12-18 15:29:39,535 WARN c.s.t.m.Ping [pool-2-thread-3] Error connect to 8.8.8.10 with 444 port!
+2022-12-18 15:29:39,535 WARN c.s.t.m.Ping [pool-2-thread-9] Error connect to 8.8.8.8 with 5001 port!
+2022-12-18 15:29:39,535 WARN c.s.t.m.Ping [pool-2-thread-6] Error connect to 8.8.8.9 with 444 port!
+2022-12-18 15:29:39,535 INFO c.s.t.m.Ping [pool-2-thread-5] Trying check connect to 8.8.8.8 with 5000 port..
+2022-12-18 15:29:39,612 WARN c.s.t.m.Ping [pool-2-thread-1] Error connect to 8.8.8.10 with 5001 port!
+2022-12-18 15:29:39,658 WARN c.s.t.m.Ping [pool-2-thread-7] Error connect to 8.8.8.9 with 5000 port!
+2022-12-18 15:29:39,658 WARN c.s.t.m.Ping [pool-2-thread-8] Error connect to 8.8.8.9 with 5001 port!
+2022-12-18 15:29:40,049 WARN c.s.t.m.Ping [pool-2-thread-5] Error connect to 8.8.8.8 with 5000 port!
+2022-12-18 15:29:40,049 WARN c.s.t.m.Ping [pool-2-thread-10] Error connect to 95.165.154.50 with 444 port!
+2022-12-18 15:29:40,049 INFO c.s.t.m.Scan [main] Threads done their job.
+2022-12-18 15:29:40,050 INFO c.s.t.m.Scan [main] End of scan.
+2022-12-18 15:29:40,058 INFO c.s.t.v.f.j.JsonConverter [main] Started convert parse strings to JSON objects..
+2022-12-18 15:29:40,059 INFO c.s.t.v.f.j.JsonConverter [main] Finished convert parse strings to JSON objects..
+2022-12-18 15:29:40,059 INFO c.s.t.v.Printer [main] Make print to console.
+2022-12-18 15:29:40,082 INFO c.s.t.c.InputController [main] Waiting user input..
+2022-12-18 15:29:44,078 INFO c.s.t.c.InputController [main] Make input parsing.
+2022-12-18 15:29:44,078 INFO c.s.t.m.i.InputParser [main] Found substring with range: 8.8.8.8-10,95.165.154.50
+2022-12-18 15:29:44,078 INFO c.s.t.m.i.InputParser [main] Substring parsing complete!
+2022-12-18 15:29:44,078 INFO c.s.t.m.i.InputParser [main] Found substring with range: 443-444,5000-5001
+2022-12-18 15:29:44,078 INFO c.s.t.m.i.InputParser [main] Substring parsing complete!
+2022-12-18 15:29:44,079 INFO c.s.t.m.i.InputParser [main] Input parsing complete
+2022-12-18 15:29:44,079 INFO c.s.t.c.MainController [main] Scanning is beginning..
+2022-12-18 15:29:44,079 INFO c.s.t.m.Scan [main] Thread Pool count from string was parsed, scanning is continue..
+2022-12-18 15:29:44,079 INFO c.s.t.m.Scan [main] Waiting for ending job all of threads.
+2022-12-18 15:29:44,079 INFO c.s.t.m.Ping [pool-3-thread-2] Trying check connect to 8.8.8.10 with 443 port..
+2022-12-18 15:29:44,079 INFO c.s.t.m.Ping [pool-3-thread-1] Trying check connect to 8.8.8.8 with 443 port..
+2022-12-18 15:29:44,079 INFO c.s.t.m.Ping [pool-3-thread-3] Trying check connect to 8.8.8.10 with 444 port..
+2022-12-18 15:29:44,080 INFO c.s.t.m.Ping [pool-3-thread-6] Trying check connect to 8.8.8.9 with 444 port..
+2022-12-18 15:29:44,080 INFO c.s.t.m.Ping [pool-3-thread-5] Trying check connect to 8.8.8.8 with 444 port..
+2022-12-18 15:29:44,080 INFO c.s.t.m.Ping [pool-3-thread-8] Trying check connect to 95.165.154.50 with 5000 port..
+2022-12-18 15:29:44,080 INFO c.s.t.m.Ping [pool-3-thread-7] Trying check connect to 95.165.154.50 with 5001 port..
+2022-12-18 15:29:44,080 INFO c.s.t.m.Ping [pool-3-thread-4] Trying check connect to 8.8.8.9 with 443 port..
+2022-12-18 15:29:44,080 INFO c.s.t.m.Ping [pool-3-thread-10] Trying check connect to 8.8.8.10 with 5000 port..
+2022-12-18 15:29:44,080 INFO c.s.t.m.Ping [pool-3-thread-9] Trying check connect to 8.8.8.8 with 5001 port..
+2022-12-18 15:29:44,147 INFO c.s.t.m.Ping [pool-3-thread-1] Trying check connect to 8.8.8.10 with 5001 port..
+2022-12-18 15:29:44,203 INFO c.s.t.m.Ping [pool-3-thread-8] Trying check connect to 8.8.8.9 with 5000 port..
+2022-12-18 15:29:44,204 INFO c.s.t.m.Ping [pool-3-thread-7] Trying check connect to 8.8.8.9 with 5001 port..
+2022-12-18 15:29:44,584 WARN c.s.t.m.Ping [pool-3-thread-5] Error connect to 8.8.8.8 with 444 port!
+2022-12-18 15:29:44,584 WARN c.s.t.m.Ping [pool-3-thread-9] Error connect to 8.8.8.8 with 5001 port!
+2022-12-18 15:29:44,584 WARN c.s.t.m.Ping [pool-3-thread-4] Error connect to 8.8.8.9 with 443 port!
+2022-12-18 15:29:44,584 WARN c.s.t.m.Ping [pool-3-thread-6] Error connect to 8.8.8.9 with 444 port!
+2022-12-18 15:29:44,584 INFO c.s.t.m.Ping [pool-3-thread-9] Trying check connect to 95.165.154.50 with 444 port..
+2022-12-18 15:29:44,584 WARN c.s.t.m.Ping [pool-3-thread-10] Error connect to 8.8.8.10 with 5000 port!
+2022-12-18 15:29:44,584 INFO c.s.t.m.Ping [pool-3-thread-4] Trying check connect to 8.8.8.8 with 5000 port..
+2022-12-18 15:29:44,584 WARN c.s.t.m.Ping [pool-3-thread-3] Error connect to 8.8.8.10 with 444 port!
+2022-12-18 15:29:44,584 WARN c.s.t.m.Ping [pool-3-thread-2] Error connect to 8.8.8.10 with 443 port!
+2022-12-18 15:29:44,584 INFO c.s.t.m.Ping [pool-3-thread-5] Trying check connect to 95.165.154.50 with 443 port..
+2022-12-18 15:29:44,662 WARN c.s.t.m.Ping [pool-3-thread-1] Error connect to 8.8.8.10 with 5001 port!
+2022-12-18 15:29:44,709 WARN c.s.t.m.Ping [pool-3-thread-7] Error connect to 8.8.8.9 with 5001 port!
+2022-12-18 15:29:44,709 WARN c.s.t.m.Ping [pool-3-thread-8] Error connect to 8.8.8.9 with 5000 port!
+2022-12-18 15:29:45,084 WARN c.s.t.m.Ping [pool-3-thread-9] Error connect to 95.165.154.50 with 444 port!
+2022-12-18 15:29:45,084 WARN c.s.t.m.Ping [pool-3-thread-4] Error connect to 8.8.8.8 with 5000 port!
+2022-12-18 15:29:45,085 INFO c.s.t.m.Scan [main] Threads done their job.
+2022-12-18 15:29:45,085 INFO c.s.t.m.Scan [main] End of scan.
+2022-12-18 15:29:45,085 INFO c.s.t.v.f.j.JsonConverter [main] Started convert parse strings to JSON objects..
+2022-12-18 15:29:45,085 INFO c.s.t.v.f.j.JsonConverter [main] Finished convert parse strings to JSON objects..
+2022-12-18 15:29:45,085 INFO c.s.t.v.Printer [main] Make print to console.
+2022-12-18 15:29:45,086 INFO c.s.t.c.InputController [main] Waiting user input..
