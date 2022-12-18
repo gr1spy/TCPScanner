@@ -1,11 +1,14 @@
 package com.scanner.tcp.view.format.json;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class JsonConverter implements JsonConverterImpl {
-
+    private static final Logger log = LoggerFactory.getLogger(JsonConverter.class);
     Map<String, Boolean> hosts;
 
     public JsonConverter(Map<String, Boolean> hosts) {
@@ -14,7 +17,7 @@ public class JsonConverter implements JsonConverterImpl {
 
     @Override
     public JsonFormat convertTo() {
-
+        log.info("Start convert parsed strings to JSON objects.");
         List<JsonHost> hostsForPrint = new ArrayList<>();
         for (Map.Entry<String, Boolean> stringFromScanResult : hosts.entrySet()) {
             selectWayForHost(stringFromScanResult, hostsForPrint);
